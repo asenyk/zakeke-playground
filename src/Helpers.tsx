@@ -36,6 +36,19 @@ export const getDefinitiveGroups = (groups: Group[], hasCustomizeEnabled: boolea
     attributesAlwaysOpened: false,
     imageUrl: ""
   }
+  const colorGroup: Group = {
+    id: -1,
+    guid: '0000-0000-0000-0001',
+    name: 'Color',
+    enabled: hasCustomizeEnabled,
+    attributes: [],
+    steps: [],
+    cameraLocationId: '',
+    displayOrder: groups.length - 1,
+    direction: 0,
+    attributesAlwaysOpened: false,
+    imageUrl: ""
+  }
 
   let groupsFiltered = groups.map(group => {
     return {
@@ -47,6 +60,7 @@ export const getDefinitiveGroups = (groups: Group[], hasCustomizeEnabled: boolea
   });
 
   if (hasCustomizeEnabled) {
+    groupsFiltered.push(colorGroup)
     groupsFiltered.push(customizeGroup)
     return groupsFiltered;
   }

@@ -61,8 +61,8 @@ function App() {
   return (
     <Container>
       <Top>
-        <Viewer />
         <Selector />
+        <Viewer />
       </Top>
 
       <Footer />

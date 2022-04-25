@@ -6,8 +6,8 @@ import useStore from "Store";
 import { Dialog, useDialogManager } from "../dialogs/Dialogs";
 import styled from "styled-components";
 
-import { ReactComponent as SearchPlusSolid } from '../../assets/icons/search-plus-solid.svg';
-import { ReactComponent as SearchMinusSolid } from '../../assets/icons/search-minus-solid.svg';
+import { ReactComponent as PlusSolid } from '../../assets/icons/plus-circle-solid.svg';
+import { ReactComponent as MinusSolid } from '../../assets/icons/minus-circle-solid.svg';
 import { ReactComponent as ExpandSolid } from '../../assets/icons/expand-solid.svg';
 
 import arIcon from '../../assets/images/ar_icon.png';
@@ -20,31 +20,34 @@ export const ViewerContainer = styled.div`
 
 export const ZoomInIcon = styled(Icon)`
   position: absolute;
-  left: 20px;
+  right: 20px;
   top: calc(50%);
   width: 32px;
   height: 32px;
+  color: #fafafa;
 `
 
 export const ZoomOutIcon = styled(Icon)`
   position: absolute;
-  left: 20px;
+  right: 20px;
   top: calc(50% + 50px);
   width: 32px;
   height: 32px;
+  color: #fafafa;
 `
 
 export const FullscreenIcon = styled(Icon)`
   position: absolute;
-  right: 30px;
+  left: 30px;
   bottom: 50px;
   width: 32px;
   height: 32px;
+  color: #fafafa;
 `
 
 export const ArIcon = styled(Icon)`
   position: absolute;
-  right: 30px;
+  left: 30px;
   top: 20px;
   width: 48px;
   height:48px;
@@ -115,8 +118,8 @@ const Viewer = () => {
     return <ViewerContainer ref={ref}>
         {!isSceneLoading && <ZakekeViewer backgroundColor='#ffffff' />}
 
-        <ZoomInIcon hoverable onClick={zoomIn} ><SearchPlusSolid /></ZoomInIcon>
-        <ZoomOutIcon hoverable onClick={zoomOut} ><SearchMinusSolid /></ZoomOutIcon>
+        <ZoomInIcon hoverable onClick={zoomIn} ><PlusSolid /></ZoomInIcon>
+        <ZoomOutIcon hoverable onClick={zoomOut} ><MinusSolid /></ZoomOutIcon>
 
         {!IS_IOS && <FullscreenIcon hoverable onClick={switchFullscreen} ><ExpandSolid /></FullscreenIcon>}
         {isSceneArEnabled() && <ArIcon hoverable><img src={arIcon} alt='' onClick={handleArClick} /></ArIcon>}

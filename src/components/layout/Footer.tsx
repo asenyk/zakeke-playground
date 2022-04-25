@@ -6,7 +6,7 @@ import { useDialogManager } from "../dialogs/Dialogs";
 import ErrorDialog from "../dialogs/ErrorDialog";
 import PdfDialog from "../dialogs/PdfDialog";
 import ShareDialog from "../dialogs/ShareDialog";
-import { Button, Icon } from "components/Atomic";
+import { Icon } from "components/Atomic";
 
 import { ReactComponent as PdfSolid } from '../../assets/icons/file-pdf-solid.svg';
 import { ReactComponent as ShareSolid } from '../../assets/icons/share-alt-square-solid.svg';
@@ -15,18 +15,19 @@ export const FooterContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 100%;
-  height: 70px;
-  min-height: 70px;
-  background-color: #fff;
+  height: 50px;
+  min-height: 50px;
+  background-color: #42545e;
   flex-direction: row;
   grid-gap: 10px;
   align-items: center;
   padding: 0px 15px;
   font-size: 14px;
-  margin-top:10px;
+  margin-top:20px;
+  border-radius: 5px;
 
   @media (max-width: 768px) {
-    min-height:70px;
+    min-height:50px;
   }
 `;
 
@@ -41,15 +42,19 @@ export const PriceInfoTextContainer = styled.span`
   font-size: 14px;
 `;
 
+export const IconBtn = styled(Icon)`
+  color: #fafafa;
+    
+  &:hover {
+    opacity: 0.5;
+  }
+`
+
 const Footer = () => {
 
-    const { setCameraByName, getPDF, addToCart, isAddToCartLoading, sellerSettings, price } = useZakeke();
+    const { setCameraByName, getPDF, sellerSettings, price } = useZakeke();
     const { setIsLoading } = useStore();
     const { showDialog, closeDialog } = useDialogManager();
-
-    const handleAddToCart = () => {
-        addToCart([]);
-    }
 
     const showError = (error: string) => {
         showDialog('error', <ErrorDialog error={error} onCloseClick={() => closeDialog('error')} />);
@@ -85,22 +90,14 @@ const Footer = () => {
         </PriceContainer>}
 
         {/* PDF preview */}
-        <Button onClick={() => handlePdfClick()}>
+        <IconBtn onClick={() => handlePdfClick()}>
             <Icon><PdfSolid /></Icon>
-        </Button>
+        </IconBtn>
 
         {/* Share */}
-        <Button onClick={() => handleShareClick()}>
+        <IconBtn onClick={() => handleShareClick()}>
             <Icon><ShareSolid /></Icon>
-        </Button>
-
-        {/* Add to cart */}
-        <Button
-            primary
-            onClick={() => handleAddToCart()}>
-            {isAddToCartLoading && <span></span>}
-            {!isAddToCartLoading && <span>{T._("ADD TO CART", "Composer")}</span>}
-        </Button>
+        </IconBtn>
     </FooterContainer>;
 }
 
