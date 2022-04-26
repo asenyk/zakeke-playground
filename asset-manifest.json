@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/zakeke-playground/static/css/main.e64c33f6.chunk.css",
+    "main.js": "/zakeke-playground/static/js/main.bb11b122.chunk.js",
+    "main.js.map": "/zakeke-playground/static/js/main.bb11b122.chunk.js.map",
+    "runtime-main.js": "/zakeke-playground/static/js/runtime-main.98f07138.js",
+    "runtime-main.js.map": "/zakeke-playground/static/js/runtime-main.98f07138.js.map",
+    "static/css/2.74170c84.chunk.css": "/zakeke-playground/static/css/2.74170c84.chunk.css",
+    "static/js/2.d2a51ac0.chunk.js": "/zakeke-playground/static/js/2.d2a51ac0.chunk.js",
+    "static/js/2.d2a51ac0.chunk.js.map": "/zakeke-playground/static/js/2.d2a51ac0.chunk.js.map",
+    "static/js/3.28867f7a.chunk.js": "/zakeke-playground/static/js/3.28867f7a.chunk.js",
+    "static/js/3.28867f7a.chunk.js.map": "/zakeke-playground/static/js/3.28867f7a.chunk.js.map",
+    "index.html": "/zakeke-playground/index.html",
+    "static/css/2.74170c84.chunk.css.map": "/zakeke-playground/static/css/2.74170c84.chunk.css.map",
+    "static/css/main.e64c33f6.chunk.css.map": "/zakeke-playground/static/css/main.e64c33f6.chunk.css.map",
+    "static/js/2.d2a51ac0.chunk.js.LICENSE.txt": "/zakeke-playground/static/js/2.d2a51ac0.chunk.js.LICENSE.txt",
+    "static/media/bezier-curve-solid.6e54a359.svg": "/zakeke-playground/static/media/bezier-curve-solid.6e54a359.svg",
+    "static/media/bold-solid.9336c937.svg": "/zakeke-playground/static/media/bold-solid.9336c937.svg",
+    "static/media/expand-solid.05504893.svg": "/zakeke-playground/static/media/expand-solid.05504893.svg",
+    "static/media/file-pdf-solid.bcd7376a.svg": "/zakeke-playground/static/media/file-pdf-solid.bcd7376a.svg",
+    "static/media/italic-solid.a4a0e0b6.svg": "/zakeke-playground/static/media/italic-solid.a4a0e0b6.svg",
+    "static/media/minus-circle-solid.2a7b16ea.svg": "/zakeke-playground/static/media/minus-circle-solid.2a7b16ea.svg",
+    "static/media/plus-circle-solid.1eac8b77.svg": "/zakeke-playground/static/media/plus-circle-solid.1eac8b77.svg",
+    "static/media/share-alt-square-solid.b89f3f13.svg": "/zakeke-playground/static/media/share-alt-square-solid.b89f3f13.svg",
+    "static/media/star.b59e1da5.svg": "/zakeke-playground/static/media/star.b59e1da5.svg",
+    "static/media/times-solid.4ff79f85.svg": "/zakeke-playground/static/media/times-solid.4ff79f85.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.98f07138.js",
+    "static/css/2.74170c84.chunk.css",
+    "static/js/2.d2a51ac0.chunk.js",
+    "static/css/main.e64c33f6.chunk.css",
+    "static/js/main.bb11b122.chunk.js"
+  ]
+}

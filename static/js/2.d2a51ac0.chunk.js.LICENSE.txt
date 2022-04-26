@@ -1,0 +1,1213 @@
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/
+
+/*!
+          * The buffer module from node.js, for the browser.
+          *
+          * @author   Feross Aboukhadijeh <http://feross.org>
+          * @license  MIT
+          */
+
+/*!
+         * Determine if an object is a Buffer
+         *
+         * @author   Feross Aboukhadijeh <https://feross.org>
+         * @license  MIT
+         */
+
+/*! .. */
+
+/*! ../../../3D/src */
+
+/*! ../../../composer/Components/ChunkedTask */
+
+/*! ../../Components/DesignManagers/MeshDesignManager */
+
+/*! ../../Helpers/debounce */
+
+/*! ../../Helpers/utils */
+
+/*! ../../Misc/DefaultAssetUrls */
+
+/*! ../../Misc/WorkerPool */
+
+/*! ../../composer/Components/ChunkedTask */
+
+/*! ../Components/ActionExecutor/SceneActionExecutor */
+
+/*! ../Components/CollapseExplode/MeshLocationsManager */
+
+/*! ../Components/DesignManagers/SceneDesignManager */
+
+/*! ../Components/Draco/DracoCompression */
+
+/*! ../Components/Environment/EnvironmentManager */
+
+/*! ../Components/Glow/GlowManager */
+
+/*! ../Components/IncrementalFiles/IncrementalFiles */
+
+/*! ../Components/InfoPointsManager/InfoPointsManager */
+
+/*! ../Components/MaterialsPreview/MaterialsPreview */
+
+/*! ../Components/SceneHelper */
+
+/*! ../Components/ScenePreview/ScenePreview */
+
+/*! ../Components/SceneToBlobs/SceneToBlobs */
+
+/*! ../Components/Selector/ElementSelector */
+
+/*! ../Enumerations */
+
+/*! ../Helpers/utils */
+
+/*! ../Layers/AxesLayer */
+
+/*! ../Layers/LightsLayer */
+
+/*! ../Misc/Database */
+
+/*! ../Misc/DefaultAssetUrls */
+
+/*! ../Misc/StringTools */
+
+/*! ../NormalMap/ProceduralNormalMap */
+
+/*! ../ProceduralTextures/BlurXProceduralTexture */
+
+/*! ../ProceduralTextures/BlurYProceduralTexture */
+
+/*! ../ProceduralTextures/ForegroundBackgroundProceduralTexture */
+
+/*! ../ProceduralTextures/MoveProceduralTexture */
+
+/*! ../ProceduralTextures/MultiplyProceduralTexture */
+
+/*! ../ProceduralTextures/NormalMapProceduralTexture */
+
+/*! ../ProceduralTextures/OverlayProceduralTexture */
+
+/*! ../SceneHelper */
+
+/*! ../Selector/ElementSelector */
+
+/*! ../Shadows/InnerShadow */
+
+/*! ../Shadows/OuterShadow */
+
+/*! ../cancel/isCancel */
+
+/*! ../core/createError */
+
+/*! ../defaults */
+
+/*! ../helpers */
+
+/*! ../state/provider */
+
+/*! ../utils */
+
+/*! ./ */
+
+/*! ./../../../../Scripts/composer/Module/node_modules/buffer/index.js */
+
+/*! ./../../../Scripts/composer/Module/node_modules/process/browser.js */
+
+/*! ./../../process/browser.js */
+
+/*! ./../core/settle */
+
+/*! ./../defaults */
+
+/*! ./../helpers/buildURL */
+
+/*! ./../helpers/combineURLs */
+
+/*! ./../helpers/cookies */
+
+/*! ./../helpers/isAbsoluteURL */
+
+/*! ./../helpers/isURLSameOrigin */
+
+/*! ./../helpers/parseHeaders */
+
+/*! ./../utils */
+
+/*! ./../webpack/buildin/global.js */
+
+/*! ./../webpack/buildin/module.js */
+
+/*! ./BaseProceduralTexture */
+
+/*! ./Cancel */
+
+/*! ./Components/AR/AndroidAR */
+
+/*! ./Components/ActionExecutor/SceneActionExecutor */
+
+/*! ./Components/CollapseExplode/MeshLocationsManager */
+
+/*! ./Components/DesignManagers/MeshDesignManager */
+
+/*! ./Components/DesignManagers/SceneDesignManager */
+
+/*! ./Components/Draco/DracoCompression */
+
+/*! ./Components/Environment/EnvironmentManager */
+
+/*! ./Components/Glow/GlowManager */
+
+/*! ./Components/IncrementalFiles/IncrementalFiles */
+
+/*! ./Components/IncrementalFiles/MakeIncremental */
+
+/*! ./Components/InfoPointsManager/InfoPointsManager */
+
+/*! ./Components/MaterialsPreview/MaterialsPreview */
+
+/*! ./Components/MeshExpander/MeshExpander */
+
+/*! ./Components/NormalMap/ProceduralNormalMap */
+
+/*! ./Components/Preview3D/Preview3DConfigurationManager */
+
+/*! ./Components/ProceduralTextures/BlendProceduralTexture */
+
+/*! ./Components/ProceduralTextures/BlurXProceduralTexture */
+
+/*! ./Components/ProceduralTextures/BlurYProceduralTexture */
+
+/*! ./Components/ProceduralTextures/ForegroundBackgroundProceduralTexture */
+
+/*! ./Components/ProceduralTextures/MoveProceduralTexture */
+
+/*! ./Components/ProceduralTextures/MultiplyProceduralTexture */
+
+/*! ./Components/ProceduralTextures/NormalMapProceduralTexture */
+
+/*! ./Components/ProceduralTextures/OpacityProceduralTexture */
+
+/*! ./Components/ProceduralTextures/OverlayProceduralTexture */
+
+/*! ./Components/SceneHelper */
+
+/*! ./Components/SceneToBlobs/SceneToBlobs */
+
+/*! ./Components/Selector/ElementSelector */
+
+/*! ./Components/Shadows/InnerShadow */
+
+/*! ./Components/Shadows/OuterShadow */
+
+/*! ./Components/USDZ/UsdzHelper */
+
+/*! ./Enumerations */
+
+/*! ./Helpers/debounce */
+
+/*! ./Helpers/utils */
+
+/*! ./InterceptorManager */
+
+/*! ./Interfaces/IDisposable */
+
+/*! ./Interfaces/ISceneEditor */
+
+/*! ./Interfaces/ISupportInitialize */
+
+/*! ./Layers/AxesLayer */
+
+/*! ./Layers/LightsLayer */
+
+/*! ./MeshDesignManager */
+
+/*! ./MeshExpander/MeshExpander */
+
+/*! ./Misc/Database */
+
+/*! ./Misc/DefaultAssetUrls */
+
+/*! ./Misc/Observable */
+
+/*! ./Misc/StringTools */
+
+/*! ./Misc/WorkerPool */
+
+/*! ./Polyfills/Array/Array.prototype.find */
+
+/*! ./Polyfills/Array/Array.prototype.includes */
+
+/*! ./Polyfills/Array/Array.prototype.map */
+
+/*! ./Polyfills/String/String.prototype.endsWith */
+
+/*! ./Polyfills/String/String.prototype.startsWith */
+
+/*! ./SceneEditor */
+
+/*! ./SceneViewer */
+
+/*! ./USDZ/UsdzHelper */
+
+/*! ./Viewers/MaterialEditor */
+
+/*! ./Viewers/SceneEditor */
+
+/*! ./Viewers/SceneViewer */
+
+/*! ./adapters/xhr */
+
+/*! ./api */
+
+/*! ./boot */
+
+/*! ./cancel/Cancel */
+
+/*! ./cancel/CancelToken */
+
+/*! ./cancel/isCancel */
+
+/*! ./common.js */
+
+/*! ./components/customizer */
+
+/*! ./components/sceneViewer */
+
+/*! ./core/Axios */
+
+/*! ./createError */
+
+/*! ./defaults */
+
+/*! ./dispatchRequest */
+
+/*! ./enhanceError */
+
+/*! ./environment */
+
+/*! ./exceptions */
+
+/*! ./fontsManager */
+
+/*! ./formats */
+
+/*! ./generic */
+
+/*! ./helpers */
+
+/*! ./helpers/bind */
+
+/*! ./helpers/normalizeHeaderName */
+
+/*! ./helpers/spread */
+
+/*! ./imageUploadTask */
+
+/*! ./implementation */
+
+/*! ./integrations/Helpers */
+
+/*! ./integrations/Integration */
+
+/*! ./lib/axios */
+
+/*! ./models */
+
+/*! ./parse */
+
+/*! ./preview */
+
+/*! ./providerValue */
+
+/*! ./reducer */
+
+/*! ./shams */
+
+/*! ./src/index.tsx */
+
+/*! ./state/provider */
+
+/*! ./stringify */
+
+/*! ./transformData */
+
+/*! ./util.inspect */
+
+/*! ./utils */
+
+/*! @gltf-transform/core */
+
+/*! axios */
+
+/*! base64-js */
+
+/*! call-bind/callBound */
+
+/*! exports provided: Accessor, Animation, AnimationChannel, AnimationSampler, AttributeLink, Buffer, BufferUtils, COPY_IDENTITY, Camera, ColorUtils, Document, Extension, ExtensionProperty, FileUtils, Format, GLB_BUFFER, Graph, GraphChild, GraphChildList, ImageUtils, IndexLink, Link, Logger, Material, MathUtils, Mesh, Node, NodeIO, PlatformIO, Primitive, PrimitiveTarget, Property, PropertyType, ReaderContext, Root, Scene, Skin, Texture, TextureChannel, TextureInfo, TextureLink, VERSION, VertexLayout, WebIO, WriterContext, bounds, uuid */
+
+/*! exports provided: AndroidAR */
+
+/*! exports provided: AxesLayer */
+
+/*! exports provided: BaseProceduralTexture */
+
+/*! exports provided: BlendProceduralTexture */
+
+/*! exports provided: BlurXProceduralTexture */
+
+/*! exports provided: BlurYProceduralTexture */
+
+/*! exports provided: Database */
+
+/*! exports provided: DefaultAssetUrls */
+
+/*! exports provided: DracoCompression */
+
+/*! exports provided: EPSILON, ARRAY_TYPE, RANDOM, setMatrixArrayType, toRadian, equals */
+
+/*! exports provided: EditorMeshType, MaterialEditor */
+
+/*! exports provided: ElementSelector */
+
+/*! exports provided: EnvironmentManager */
+
+/*! exports provided: EnvironmentMode, EditingMode, ZakekeEnvironment */
+
+/*! exports provided: EventState, Observer, MultiObserver, Observable */
+
+/*! exports provided: Exception, ParametersParseFailException, UnsupportedPlatformException, UploadFailedExpection, NonSquarePixelException */
+
+/*! exports provided: ForegroundBackgroundProceduralTexture */
+
+/*! exports provided: GlowManager */
+
+/*! exports provided: IncrementalFiles */
+
+/*! exports provided: InfoPointsManager */
+
+/*! exports provided: InnerShadow */
+
+/*! exports provided: LightsLayer */
+
+/*! exports provided: MakeIncremental */
+
+/*! exports provided: MaterialGroup, SourceTaskStatus, SceneEditor */
+
+/*! exports provided: MaterialPreviewData, MaterialsPreview */
+
+/*! exports provided: MeshDesignManager */
+
+/*! exports provided: MeshExpander */
+
+/*! exports provided: MeshLocationsManager */
+
+/*! exports provided: MoveProceduralTexture */
+
+/*! exports provided: MultiplyProceduralTexture */
+
+/*! exports provided: NormalMapProceduralTexture */
+
+/*! exports provided: OpacityProceduralTexture */
+
+/*! exports provided: OuterShadow */
+
+/*! exports provided: OverlayProceduralTexture */
+
+/*! exports provided: Platform, PlatformPriceType, User, Product, ProductArea, ProductQuantityRule, Variant, ZakekeEvent, TemplateConstraints, TemplateArea, Template, TextItem, ImageItem, PlatformSettings, EventMessageType, Camera, Group, Step, AttributeType, AttributeOptionShapeType, Attribute, Option */
+
+/*! exports provided: PlatformAttributeSelection */
+
+/*! exports provided: Preview3DConfigurationManager */
+
+/*! exports provided: ProceduralNormalMap */
+
+/*! exports provided: SceneActionsExecutor */
+
+/*! exports provided: SceneDesignManager */
+
+/*! exports provided: SceneHelper */
+
+/*! exports provided: ScenePreviewData, ScenesPreview */
+
+/*! exports provided: SceneToBlobs */
+
+/*! exports provided: SceneViewer */
+
+/*! exports provided: StringTools */
+
+/*! exports provided: T, dataURLtoFile, StringHelper, Browser, Pagination, hex2rgb, rgb2hex, rgbToHsl, hslToRgb, hue2rgb, rgbToHsv, hsvToRgb, iOS, copy, compare, isValidJSON, isPlatformCode, matchCodes, getPlatformSettings, IS_ANDROID, IS_IOS, IS_AR_DEVICE_COMPLIANT, uuid, sleep */
+
+/*! exports provided: Task */
+
+/*! exports provided: UsdzHelper */
+
+/*! exports provided: Utils */
+
+/*! exports provided: WorkerPool */
+
+/*! exports provided: ZakekeDesigner */
+
+/*! exports provided: ZakekeEnvironment */
+
+/*! exports provided: ZakekeEnvironment, ZakekeViewer, ZakekeDesigner, useZakeke, useInternalState, ZakekeProvider, Platform, PlatformPriceType, User, Product, ProductArea, ProductQuantityRule, Variant, ZakekeEvent, TemplateConstraints, TemplateArea, Template, TextItem, ImageItem, PlatformSettings, EventMessageType, Camera, Group, Step, AttributeType, AttributeOptionShapeType, Attribute, Option */
+
+/*! exports provided: ZakekeViewer */
+
+/*! exports provided: axiosApi, setupApi */
+
+/*! exports provided: create, clone, copy, fromValues, set, identity, transpose, invert, adjoint, determinant, multiply, translate, scale, rotate, rotateX, rotateY, rotateZ, fromTranslation, fromScaling, fromRotation, fromXRotation, fromYRotation, fromZRotation, fromRotationTranslation, fromQuat2, getTranslation, getScaling, getRotation, fromRotationTranslationScale, fromRotationTranslationScaleOrigin, fromQuat, frustum, perspectiveNO, perspective, perspectiveZO, perspectiveFromFieldOfView, orthoNO, ortho, orthoZO, lookAt, targetTo, str, frob, add, subtract, multiplyScalar, multiplyScalarAndAdd, exactEquals, equals, mul, sub */
+
+/*! exports provided: create, clone, length, fromValues, copy, set, add, subtract, multiply, divide, ceil, floor, min, max, round, scale, scaleAndAdd, distance, squaredDistance, squaredLength, negate, inverse, normalize, dot, cross, lerp, hermite, bezier, random, transformMat4, transformMat3, transformQuat, rotateX, rotateY, rotateZ, angle, zero, str, exactEquals, equals, sub, mul, div, dist, sqrDist, len, sqrLen, forEach */
+
+/*! exports provided: createProviderValue */
+
+/*! exports provided: debounce */
+
+/*! exports provided: default */
+
+/*! exports provided: integrationFor */
+
+/*! exports provided: loadFonts, downloadFontsOfDesign */
+
+/*! exports provided: reducer */
+
+/*! exports provided: useZakeke, useInternalState, ZakekeProvider */
+
+/*! fs */
+
+/*! function-bind */
+
+/*! get-intrinsic */
+
+/*! gl-matrix/mat4 */
+
+/*! gl-matrix/vec3 */
+
+/*! has */
+
+/*! has-symbols */
+
+/*! ieee754 */
+
+/*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
+
+/*! is-buffer */
+
+/*! isarray */
+
+/*! lodash */
+
+/*! no static exports found */
+
+/*! object-inspect */
+
+/*! path */
+
+/*! qs */
+
+/*! react */
+
+/*! side-channel */
+
+/*! styled-components */
+
+/*!********************!*\
+        !*** ./src/api.ts ***!
+        \********************/
+
+/*!********************!*\
+        !*** fs (ignored) ***!
+        \********************/
+
+/*!**********************!*\
+        !*** path (ignored) ***!
+        \**********************/
+
+/*!***********************!*\
+        !*** ./src/index.tsx ***!
+        \***********************/
+
+/*!***********************!*\
+        !*** ./src/models.ts ***!
+        \***********************/
+
+/*!************************!*\
+        !*** external "react" ***!
+        \************************/
+
+/*!*************************!*\
+        !*** ./src/helpers.tsx ***!
+        \*************************/
+
+/*!****************************!*\
+        !*** ./src/exceptions.tsx ***!
+        \****************************/
+
+/*!****************************!*\
+        !*** ./src/state/boot.tsx ***!
+        \****************************/
+
+/*!*****************************!*\
+        !*** ./src/environment.tsx ***!
+        \*****************************/
+
+/*!*****************************!*\
+        !*** ./src/fontsManager.ts ***!
+        \*****************************/
+
+/*!*****************************!*\
+        !*** multi ./src/index.tsx ***!
+        \*****************************/
+
+/*!******************************!*\
+        !*** ./src/state/reducer.ts ***!
+        \******************************/
+
+/*!********************************!*\
+        !*** ./src/imageUploadTask.ts ***!
+        \********************************/
+
+/*!********************************!*\
+        !*** ./src/state/provider.tsx ***!
+        \********************************/
+
+/*!********************************!*\
+        !*** ./util.inspect (ignored) ***!
+        \********************************/
+
+/*!***********************************!*\
+        !*** (webpack)/buildin/global.js ***!
+        \***********************************/
+
+/*!***********************************!*\
+        !*** (webpack)/buildin/module.js ***!
+        \***********************************/
+
+/*!************************************!*\
+        !*** ../Components/ChunkedTask.ts ***!
+        \************************************/
+
+/*!************************************!*\
+        !*** ./src/state/providerValue.ts ***!
+        \************************************/
+
+/*!************************************!*\
+        !*** external "styled-components" ***!
+        \************************************/
+
+/*!*************************************!*\
+        !*** ./node_modules/axios/index.js ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/integrations/Helpers.ts ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/integrations/generic.ts ***!
+        \*************************************/
+
+/*!*************************************!*\
+        !*** ./src/integrations/preview.ts ***!
+        \*************************************/
+
+/*!**************************************!*\
+        !*** ./node_modules/buffer/index.js ***!
+        \**************************************/
+
+/*!**************************************!*\
+        !*** ./node_modules/qs/lib/index.js ***!
+        \**************************************/
+
+/*!**************************************!*\
+        !*** ./node_modules/qs/lib/parse.js ***!
+        \**************************************/
+
+/*!**************************************!*\
+        !*** ./node_modules/qs/lib/utils.js ***!
+        \**************************************/
+
+/*!***************************************!*\
+        !*** ./node_modules/has/src/index.js ***!
+        \***************************************/
+
+/*!***************************************!*\
+        !*** ./node_modules/ieee754/index.js ***!
+        \***************************************/
+
+/*!***************************************!*\
+        !*** ./node_modules/isarray/index.js ***!
+        \***************************************/
+
+/*!***************************************!*\
+        !*** ./node_modules/lodash/lodash.js ***!
+        \***************************************/
+
+/*!***************************************!*\
+        !*** ./src/components/customizer.tsx ***!
+        \***************************************/
+
+/*!****************************************!*\
+        !*** ./node_modules/qs/lib/formats.js ***!
+        \****************************************/
+
+/*!****************************************!*\
+        !*** ./src/components/sceneViewer.tsx ***!
+        \****************************************/
+
+/*!*****************************************!*\
+        !*** ./node_modules/axios/lib/axios.js ***!
+        \*****************************************/
+
+/*!*****************************************!*\
+        !*** ./node_modules/axios/lib/utils.js ***!
+        \*****************************************/
+
+/*!*****************************************!*\
+        !*** ./node_modules/base64-js/index.js ***!
+        \*****************************************/
+
+/*!*****************************************!*\
+        !*** ./node_modules/call-bind/index.js ***!
+        \*****************************************/
+
+/*!*****************************************!*\
+        !*** ./node_modules/is-buffer/index.js ***!
+        \*****************************************/
+
+/*!*****************************************!*\
+        !*** ./node_modules/process/browser.js ***!
+        \*****************************************/
+
+/*!*****************************************!*\
+        !*** ./src/integrations/Integration.ts ***!
+        \*****************************************/
+
+/*!******************************************!*\
+        !*** ./node_modules/qs/lib/stringify.js ***!
+        \******************************************/
+
+/*!*******************************************!*\
+        !*** ./node_modules/has-symbols/index.js ***!
+        \*******************************************/
+
+/*!*******************************************!*\
+        !*** ./node_modules/has-symbols/shams.js ***!
+        \*******************************************/
+
+/*!********************************************!*\
+        !*** ./node_modules/axios/lib/defaults.js ***!
+        \********************************************/
+
+/*!********************************************!*\
+        !*** ./node_modules/side-channel/index.js ***!
+        \********************************************/
+
+/*!*********************************************!*\
+        !*** ./node_modules/call-bind/callBound.js ***!
+        \*********************************************/
+
+/*!*********************************************!*\
+        !*** ./node_modules/function-bind/index.js ***!
+        \*********************************************/
+
+/*!*********************************************!*\
+        !*** ./node_modules/get-intrinsic/index.js ***!
+        \*********************************************/
+
+/*!**********************************************!*\
+        !*** ./node_modules/axios/lib/core/Axios.js ***!
+        \**********************************************/
+
+/*!**********************************************!*\
+        !*** ./node_modules/object-inspect/index.js ***!
+        \**********************************************/
+
+/*!***********************************************!*\
+        !*** ./node_modules/axios/lib/core/settle.js ***!
+        \***********************************************/
+
+/*!************************************************!*\
+        !*** ./node_modules/axios/lib/adapters/xhr.js ***!
+        \************************************************/
+
+/*!************************************************!*\
+        !*** ./node_modules/axios/lib/helpers/bind.js ***!
+        \************************************************/
+
+/*!*************************************************!*\
+        !*** ./node_modules/axios/lib/cancel/Cancel.js ***!
+        \*************************************************/
+
+/*!**************************************************!*\
+        !*** ./node_modules/axios/lib/helpers/spread.js ***!
+        \**************************************************/
+
+/*!***************************************************!*\
+        !*** ./node_modules/axios/lib/cancel/isCancel.js ***!
+        \***************************************************/
+
+/*!***************************************************!*\
+        !*** ./node_modules/axios/lib/helpers/cookies.js ***!
+        \***************************************************/
+
+/*!****************************************************!*\
+        !*** ./node_modules/axios/lib/core/createError.js ***!
+        \****************************************************/
+
+/*!****************************************************!*\
+        !*** ./node_modules/axios/lib/helpers/buildURL.js ***!
+        \****************************************************/
+
+/*!*****************************************************!*\
+        !*** ./node_modules/axios/lib/core/enhanceError.js ***!
+        \*****************************************************/
+
+/*!******************************************************!*\
+        !*** ./node_modules/axios/lib/cancel/CancelToken.js ***!
+        \******************************************************/
+
+/*!******************************************************!*\
+        !*** ./node_modules/axios/lib/core/transformData.js ***!
+        \******************************************************/
+
+/*!******************************************************!*\
+        !*** ./node_modules/function-bind/implementation.js ***!
+        \******************************************************/
+
+/*!*******************************************************!*\
+        !*** ./node_modules/axios/lib/helpers/combineURLs.js ***!
+        \*******************************************************/
+
+/*!********************************************************!*\
+        !*** ./node_modules/axios/lib/core/dispatchRequest.js ***!
+        \********************************************************/
+
+/*!********************************************************!*\
+        !*** ./node_modules/axios/lib/helpers/parseHeaders.js ***!
+        \********************************************************/
+
+/*!*********************************************************!*\
+        !*** ./node_modules/axios/lib/helpers/isAbsoluteURL.js ***!
+        \*********************************************************/
+
+/*!***********************************************************!*\
+        !*** ./node_modules/axios/lib/core/InterceptorManager.js ***!
+        \***********************************************************/
+
+/*!***********************************************************!*\
+        !*** ./node_modules/axios/lib/helpers/isURLSameOrigin.js ***!
+        \***********************************************************/
+
+/*!***************************************************************!*\
+        !*** ./node_modules/axios/lib/helpers/normalizeHeaderName.js ***!
+        \***************************************************************/
+
+/*!************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/index.ts ***!
+        \************************************************************************/
+
+/*!****************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/node_modules/axios/index.js ***!
+        \****************************************************************************/
+
+/*!*******************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Enumerations.ts ***!
+        \*******************************************************************************/
+
+/*!********************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Helpers/utils.ts ***!
+        \********************************************************************************/
+
+/*!********************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Misc/Database.ts ***!
+        \********************************************************************************/
+
+/*!********************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/node_modules/axios/lib/axios.js ***!
+        \********************************************************************************/
+
+/*!********************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/node_modules/axios/lib/utils.js ***!
+        \********************************************************************************/
+
+/*!********************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/node_modules/is-buffer/index.js ***!
+        \********************************************************************************/
+
+/*!**********************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Misc/Observable.ts ***!
+        \**********************************************************************************/
+
+/*!**********************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Misc/WorkerPool.ts ***!
+        \**********************************************************************************/
+
+/*!***********************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Helpers/debounce.ts ***!
+        \***********************************************************************************/
+
+/*!***********************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Layers/AxesLayer.ts ***!
+        \***********************************************************************************/
+
+/*!***********************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Misc/StringTools.ts ***!
+        \***********************************************************************************/
+
+/*!***********************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/node_modules/axios/lib/defaults.js ***!
+        \***********************************************************************************/
+
+/*!***********************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/node_modules/gl-matrix/esm/mat4.js ***!
+        \***********************************************************************************/
+
+/*!***********************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/node_modules/gl-matrix/esm/vec3.js ***!
+        \***********************************************************************************/
+
+/*!*************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Layers/LightsLayer.ts ***!
+        \*************************************************************************************/
+
+/*!*************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/node_modules/axios/lib/core/Axios.js ***!
+        \*************************************************************************************/
+
+/*!*************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/node_modules/gl-matrix/esm/common.js ***!
+        \*************************************************************************************/
+
+/*!**************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Viewers/SceneEditor.ts ***!
+        \**************************************************************************************/
+
+/*!**************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Viewers/SceneViewer.ts ***!
+        \**************************************************************************************/
+
+/*!**************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/node_modules/axios/lib/core/settle.js ***!
+        \**************************************************************************************/
+
+/*!***************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/node_modules/axios/lib/adapters/xhr.js ***!
+        \***************************************************************************************/
+
+/*!***************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/node_modules/axios/lib/helpers/bind.js ***!
+        \***************************************************************************************/
+
+/*!****************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Misc/DefaultAssetUrls.ts ***!
+        \****************************************************************************************/
+
+/*!****************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/node_modules/axios/lib/cancel/Cancel.js ***!
+        \****************************************************************************************/
+
+/*!*****************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/SceneHelper.ts ***!
+        \*****************************************************************************************/
+
+/*!*****************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Interfaces/IDisposable.ts ***!
+        \*****************************************************************************************/
+
+/*!*****************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Viewers/MaterialEditor.ts ***!
+        \*****************************************************************************************/
+
+/*!*****************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/node_modules/axios/lib/helpers/spread.js ***!
+        \*****************************************************************************************/
+
+/*!******************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/AR/AndroidAR.ts ***!
+        \******************************************************************************************/
+
+/*!******************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Interfaces/ISceneEditor.ts ***!
+        \******************************************************************************************/
+
+/*!******************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/node_modules/axios/lib/cancel/isCancel.js ***!
+        \******************************************************************************************/
+
+/*!******************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/node_modules/axios/lib/helpers/cookies.js ***!
+        \******************************************************************************************/
+
+/*!*******************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/node_modules/axios/lib/core/createError.js ***!
+        \*******************************************************************************************/
+
+/*!*******************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/node_modules/axios/lib/helpers/buildURL.js ***!
+        \*******************************************************************************************/
+
+/*!********************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/node_modules/axios/lib/core/enhanceError.js ***!
+        \********************************************************************************************/
+
+/*!*********************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/USDZ/UsdzHelper.ts ***!
+        \*********************************************************************************************/
+
+/*!*********************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/node_modules/axios/lib/cancel/CancelToken.js ***!
+        \*********************************************************************************************/
+
+/*!*********************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/node_modules/axios/lib/core/transformData.js ***!
+        \*********************************************************************************************/
+
+/*!**********************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/Glow/GlowManager.ts ***!
+        \**********************************************************************************************/
+
+/*!**********************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/node_modules/axios/lib/helpers/combineURLs.js ***!
+        \**********************************************************************************************/
+
+/*!***********************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/node_modules/axios/lib/core/dispatchRequest.js ***!
+        \***********************************************************************************************/
+
+/*!***********************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/node_modules/axios/lib/helpers/parseHeaders.js ***!
+        \***********************************************************************************************/
+
+/*!************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Interfaces/ISupportInitialize.ts ***!
+        \************************************************************************************************/
+
+/*!************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/node_modules/axios/lib/helpers/isAbsoluteURL.js ***!
+        \************************************************************************************************/
+
+/*!*************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/Shadows/InnerShadow.ts ***!
+        \*************************************************************************************************/
+
+/*!*************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/Shadows/OuterShadow.ts ***!
+        \*************************************************************************************************/
+
+/*!**************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/node_modules/axios/lib/core/InterceptorManager.js ***!
+        \**************************************************************************************************/
+
+/*!**************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/node_modules/axios/lib/helpers/isURLSameOrigin.js ***!
+        \**************************************************************************************************/
+
+/*!****************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/Draco/DracoCompression.ts ***!
+        \****************************************************************************************************/
+
+/*!******************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/Selector/ElementSelector.ts ***!
+        \******************************************************************************************************/
+
+/*!******************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Polyfills/Array/Array.prototype.map.js ***!
+        \******************************************************************************************************/
+
+/*!******************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/node_modules/@gltf-transform/core/dist/core.modern.js ***!
+        \******************************************************************************************************/
+
+/*!******************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/node_modules/axios/lib/helpers/normalizeHeaderName.js ***!
+        \******************************************************************************************************/
+
+/*!*******************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/MeshExpander/MeshExpander.ts ***!
+        \*******************************************************************************************************/
+
+/*!*******************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/ScenePreview/ScenePreview.ts ***!
+        \*******************************************************************************************************/
+
+/*!*******************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/SceneToBlobs/SceneToBlobs.ts ***!
+        \*******************************************************************************************************/
+
+/*!*******************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Polyfills/Array/Array.prototype.find.js ***!
+        \*******************************************************************************************************/
+
+/*!***********************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/NormalMap/ProceduralNormalMap.ts ***!
+        \***********************************************************************************************************/
+
+/*!***********************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Polyfills/Array/Array.prototype.includes.js ***!
+        \***********************************************************************************************************/
+
+/*!************************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/Environment/EnvironmentManager.ts ***!
+        \************************************************************************************************************/
+
+/*!*************************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Polyfills/String/String.prototype.endsWith.js ***!
+        \*************************************************************************************************************/
+
+/*!**************************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/DesignManagers/MeshDesignManager.ts ***!
+        \**************************************************************************************************************/
+
+/*!**************************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/IncrementalFiles/MakeIncremental.ts ***!
+        \**************************************************************************************************************/
+
+/*!***************************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/DesignManagers/SceneDesignManager.ts ***!
+        \***************************************************************************************************************/
+
+/*!***************************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/IncrementalFiles/IncrementalFiles.ts ***!
+        \***************************************************************************************************************/
+
+/*!***************************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/MaterialsPreview/MaterialsPreview.ts ***!
+        \***************************************************************************************************************/
+
+/*!***************************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Polyfills/String/String.prototype.startsWith.js ***!
+        \***************************************************************************************************************/
+
+/*!****************************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/ActionExecutor/SceneActionExecutor.ts ***!
+        \****************************************************************************************************************/
+
+/*!*****************************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/InfoPointsManager/InfoPointsManager.ts ***!
+        \*****************************************************************************************************************/
+
+/*!******************************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/CollapseExplode/MeshLocationsManager.ts ***!
+        \******************************************************************************************************************/
+
+/*!*********************************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/Preview3D/Preview3DConfigurationManager.ts ***!
+        \*********************************************************************************************************************/
+
+/*!**********************************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/ProceduralTextures/BaseProceduralTexture.ts ***!
+        \**********************************************************************************************************************/
+
+/*!**********************************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/ProceduralTextures/MoveProceduralTexture.ts ***!
+        \**********************************************************************************************************************/
+
+/*!***********************************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/ProceduralTextures/BlendProceduralTexture.ts ***!
+        \***********************************************************************************************************************/
+
+/*!***********************************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/ProceduralTextures/BlurXProceduralTexture.ts ***!
+        \***********************************************************************************************************************/
+
+/*!***********************************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/ProceduralTextures/BlurYProceduralTexture.ts ***!
+        \***********************************************************************************************************************/
+
+/*!*************************************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/ProceduralTextures/OpacityProceduralTexture.ts ***!
+        \*************************************************************************************************************************/
+
+/*!*************************************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/ProceduralTextures/OverlayProceduralTexture.ts ***!
+        \*************************************************************************************************************************/
+
+/*!**************************************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/ProceduralTextures/MultiplyProceduralTexture.ts ***!
+        \**************************************************************************************************************************/
+
+/*!***************************************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/ProceduralTextures/NormalMapProceduralTexture.ts ***!
+        \***************************************************************************************************************************/
+
+/*!**************************************************************************************************************************************!*\
+        !*** C:/ProjectsSSD/ZakekeCore/Zakeke/wwwroot/Scripts/3D/src/Components/ProceduralTextures/ForegroundBackgroundProceduralTexture.ts ***!
+        \**************************************************************************************************************************************/
+
+/**
+          * @license
+          * Lodash <https://lodash.com/>
+          * Copyright OpenJS Foundation and other contributors <https://openjsf.org/>
+          * Released under MIT license <https://lodash.com/license>
+          * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+          * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+          */
+
+/**
+ * @license
+ * Lodash <https://lodash.com/>
+ * Copyright OpenJS Foundation and other contributors <https://openjsf.org/>
+ * Released under MIT license <https://lodash.com/license>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ */
+
+/** @license React v0.20.2
+ * scheduler.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v16.13.1
+ * react-is.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v17.0.2
+ * react-dom.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v17.0.2
+ * react-is.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v17.0.2
+ * react-jsx-runtime.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v17.0.2
+ * react.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
