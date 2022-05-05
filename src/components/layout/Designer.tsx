@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, {FC, useEffect, useState} from "react";
 import styled from "styled-components";
 import { ImageItem, TextItem, useZakeke } from "zakeke-configurator-react";
 import { Button, CarouselContainer, Icon } from '../Atomic';
@@ -15,6 +15,11 @@ import Paper from "@material-ui/core/Paper";
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
 import ItemTextView from "../widgets/ItemTextView";
+import Loader from "react-loader-spinner";
+import Select  from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+
+
 
 export type PropChangeHandler = (item: EditTextItem | EditImageItem, prop: string, value: string | boolean | File) => void;
 
@@ -64,6 +69,105 @@ const SupportedFormatsList = styled.span`
     padding-top:5px;
  
 `;
+
+interface Image {
+    imageID: number;
+    name: string;
+    choiceUrl: string;
+    preferredWidth: number | null;
+    preferredHeight: number | null;
+}
+
+
+const CategoriesList = styled.ul`
+    max-height:300px;
+    padding: 0;
+    margin: 0;
+    overflow:auto;
+`;
+
+const CategoryItem = styled.li`
+    height: 70px;
+    min-width:200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #eee;
+    cursor: pointer;
+    margin-bottom: 10px;
+    color: #313c46;
+    &:hover{
+        background-color: #313c46;
+        color: white;
+    }
+`;
+
+const ImagesList = styled.ul`
+    list-style: none;
+    display: inline-block;
+    padding-top: 50px;
+`
+
+const ImageItemView = styled.li`
+    display: inline-block;
+    border: 1px #000 solid;
+    padding: 5px;
+    margin-right: 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: white;
+
+    &:hover {
+        border: 1px #f98a1c solid;
+    }
+
+    img {
+        width: 30px;
+        height: 30px;
+        display: block;
+        object-fit: contain;
+        //background-color: #fff;
+    }
+
+    span {
+        font-size: 12px;
+    }
+`;
+
+const CenteredLoader = styled(Loader)`
+    margin: auto;
+    display: block;
+    width: 48px;
+    height: 48px;
+`;
+
+const BackTitle = styled.div`
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+
+    @media(hover) {
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+`;
+
+interface ImageMacroCategory {
+    macroCategoryID: number | null;
+    name: string;
+    isSystemwide: boolean;
+    hasImages: boolean;
+    categories: ImageCategory[];
+}
+
+interface ImageCategory {
+    categoryID: number | null;
+    name: string;
+    isSystemwide: boolean;
+    hasImages: boolean;
+}
 
 interface Image {
     imageID: number;
@@ -281,6 +385,53 @@ const Designer: FC<{}> = () => {
         constraints: null,
     })
 
+    const { getMacroCategories, getImages } = useZakeke();
+    const [isLoading, setIsloading] = useState(false);
+    const [macroCategories, setMacroCategories] = useState<ImageMacroCategory[]>([]);
+    const [selectedMacroCategory, setSelectedMacroCategory] = useState<ImageMacroCategory | null>(null);
+    const [selectedCategory, setSelectedCategory] = useState<ImageCategory | null>();
+    const [images, setImages] = useState<Image[]>();
+
+    useEffect(() => {
+        updateCategories();
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    const updateCategories = async () => {
+        try {
+            setIsloading(true);
+            let macroCategories = await getMacroCategories();
+            setIsloading(false);
+            setMacroCategories(macroCategories);
+
+            if (macroCategories.length === 1)
+                handleMacroCategoryClick(macroCategories[0]);
+        } catch (ex) {
+            console.error(ex);
+        }
+    }
+
+    const handleMacroCategoryClick = async (macroCategory: ImageMacroCategory) => {
+        setSelectedMacroCategory(macroCategory);
+
+        if (macroCategory.categories.length === 1)
+            handleCategoryClick(macroCategory.categories[0]);
+    }
+
+    const handleCategoryClick = async (category: ImageCategory) => {
+        try {
+            setIsloading(true);
+            setSelectedCategory(category);
+
+            const images: Image[] = await getImages(category.categoryID!);
+            setIsloading(false);
+            setImages(images);
+        } catch (ex) {
+            console.error(ex);
+        }
+    }
+
     return <DesignerContainer>
 
         {/* Areas */}
@@ -302,43 +453,43 @@ const Designer: FC<{}> = () => {
 
         {(itemsFiltered.length === 0 && !(showAddTextButton || showUploadButton || showGalleryButton)) && <Center>{T._("No customizable items", "Composer")}</Center>}
 
-        {itemsFiltered.map(item => {
-            if (item.type === 0)
-                return <ItemText key={item.guid} handleItemPropChange={handleItemPropChange} item={item as TextItem} />
-            else if (item.type === 1)
-                return <ItemImage key={item.guid} handleItemPropChange={handleItemPropChange} item={item as ImageItem} currentTemplateArea={currentTemplateArea!} />
+        {/*{itemsFiltered.map(item => {*/}
+        {/*    if (item.type === 0)*/}
+        {/*        return <ItemText key={item.guid} handleItemPropChange={handleItemPropChange} item={item as TextItem} />*/}
+        {/*    else if (item.type === 1)*/}
+        {/*        return <ItemImage key={item.guid} handleItemPropChange={handleItemPropChange} item={item as ImageItem} currentTemplateArea={currentTemplateArea!} />*/}
+        
+        {/*    return null;*/}
+        {/*})}*/}
 
-            return null;
-        })}
-
-        {(showAddTextButton || showUploadButton || showGalleryButton) && <UploadButtons>
-            {showAddTextButton && <Button
-                isFullWidth
-                onClick={handleAddTextClick}>
-                <Icon><Add /></Icon>
-                <span>{T._("ADD TEXT", "Composer")}</span>
-            </Button>}
-
-            {showGalleryButton && <Button
-                isFullWidth
-                onClick={handleAddImageFromGalleryClick} >
-                <Icon><Add /></Icon>
-                <span>{T._("ADD CLIPART", "Composer")}</span>
-            </Button>}
-
-            {showUploadButton && <>
-                <Button
-                    isFullWidth
-                    onClick={() => handleUploadImageClick(addItemImage, createImage)}>
-                    <Icon><Add /></Icon>
-                    <span>
-                        <span>{itemsFiltered.some(item => item.type === 1) ?
-                            T._("UPLOAD ANOTHER IMAGE", "Composer") : T._("UPLOAD IMAGE", "Composer")} </span>
-                    </span>
-                </Button>
-            </>}
-            <SupportedFormatsList>{T._("Supported file formats:", "Composer") + " " + supportedFileFormats}</SupportedFormatsList>
-        </UploadButtons>}
+        {/*{(showAddTextButton || showUploadButton || showGalleryButton) && <UploadButtons>*/}
+        {/*    {showAddTextButton && <Button*/}
+        {/*        isFullWidth*/}
+        {/*        onClick={handleAddTextClick}>*/}
+        {/*        <Icon><Add /></Icon>*/}
+        {/*        <span>{T._("ADD TEXT", "Composer")}</span>*/}
+        {/*    </Button>}*/}
+        
+        {/*    {showGalleryButton && <Button*/}
+        {/*        isFullWidth*/}
+        {/*        onClick={handleAddImageFromGalleryClick} >*/}
+        {/*        <Icon><Add /></Icon>*/}
+        {/*        <span>{T._("ADD CLIPART", "Composer")}</span>*/}
+        {/*    </Button>}*/}
+        
+        {/*    {showUploadButton && <>*/}
+        {/*        <Button*/}
+        {/*            isFullWidth*/}
+        {/*            onClick={() => handleUploadImageClick(addItemImage, createImage)}>*/}
+        {/*            <Icon><Add /></Icon>*/}
+        {/*            <span>*/}
+        {/*                <span>{itemsFiltered.some(item => item.type === 1) ?*/}
+        {/*                    T._("UPLOAD ANOTHER IMAGE", "Composer") : T._("UPLOAD IMAGE", "Composer")} </span>*/}
+        {/*            </span>*/}
+        {/*        </Button>*/}
+        {/*    </>}*/}
+        {/*    <SupportedFormatsList>{T._("Supported file formats:", "Composer") + " " + supportedFileFormats}</SupportedFormatsList>*/}
+        {/*</UploadButtons>}*/}
 
         <Tabs
           style={{ color: "white", marginBottom: 15 }}
@@ -366,41 +517,56 @@ const Designer: FC<{}> = () => {
                 Add your text
             </Button>
         </>}
-        {value === 1 && <></>
+        {value === 1 &&
 
-        //    <>
-        // {!selectedMacroCategory && <CategoriesList>{macroCategories.map(macroCategory => {
-        //     return <CategoryItem
-        //     key={macroCategory.macroCategoryID!.toString()}
-        //     onClick={() => handleMacroCategoryClick(macroCategory)}>
-        // {macroCategory.name}</CategoryItem>
-        // })}
-        //     </CategoriesList>}
-        //
-        // {selectedMacroCategory && !selectedCategory && <>
-        //     <BackTitle onClick={() => setSelectedMacroCategory(null)}>{T._("Return to macro categories", "Composer")}</BackTitle>
-        //
-        //     <CategoriesList>
-        // {selectedMacroCategory.categories.map(category => {
-        //     return <CategoryItem key={category.categoryID!.toString()} onClick={() => handleCategoryClick(category)}>{category.name}</CategoryItem>
-        // })}
-        //     </CategoriesList>
-        //     </>}
-        //
-        // {selectedMacroCategory && selectedCategory && images && <>
-        //     <BackTitle onClick={() => setSelectedCategory(null)}>{T._("Return to categories", "Composer")}</BackTitle>
-        //
-        //     <ImagesList>
-        // {images.map(image => {
-        //     return <ImageItem key={image.imageID!.toString()} onClick={() => onImageSelected(image)}>
-        //     <img src={image.choiceUrl} alt={image.name} />
-        //     <span>{image.name}</span>
-        //     </ImageItem>
-        // })}
-        //     </ImagesList>
-        //
-        //     </>}
-        //     </>
+           <>
+               <div style={{position: "relative"}}>
+                   <span style={{color: "white", top: 5, position: "absolute"}}>Chose your image:</span>
+                   <span style={{right: 0, position: "absolute"}}>
+                   <span style={{color: "white"}}>{selectedCategory?.name}</span>
+                   <Select style={{color: "white", backgroundColor: "transparent", border: "none", outline: "none"}}>
+                       {selectedMacroCategory?.categories.map(category => {
+                           return <MenuItem style={{backgroundColor: "transparent"}} onClick={() => handleCategoryClick(category)}>{category.name}</MenuItem>
+                       })}
+                   </Select>
+               </span>
+               </div>
+
+
+
+
+        {/*{!selectedMacroCategory && <CategoriesList>{macroCategories.map(macroCategory => {*/}
+        {/*    return <CategoryItem*/}
+        {/*    key={macroCategory.macroCategoryID!.toString()}*/}
+        {/*    onClick={() => handleMacroCategoryClick(macroCategory)}>*/}
+        {/*{macroCategory.name}</CategoryItem>*/}
+        {/*})}*/}
+        {/*    </CategoriesList>}*/}
+
+        {/*{selectedMacroCategory && !selectedCategory && <>*/}
+        {/*    <BackTitle onClick={() => setSelectedMacroCategory(null)}>{T._("Return to macro categories", "Composer")}</BackTitle>*/}
+
+        {/*    <CategoriesList>*/}
+        {/*{selectedMacroCategory.categories.map(category => {*/}
+        {/*    return <CategoryItem key={category.categoryID!.toString()} onClick={() => handleCategoryClick(category)}>{category.name}</CategoryItem>*/}
+        {/*})}*/}
+        {/*    </CategoriesList>*/}
+        {/*    </>}*/}
+
+        {selectedMacroCategory && selectedCategory && images && <>
+            {/*<BackTitle onClick={() => setSelectedCategory(null)}>{T._("Return to categories", "Composer")}</BackTitle>*/}
+
+            <ImagesList>
+        {images.map(image => {
+            return <ImageItemView key={image.imageID!.toString()}
+                  onClick={() => addItemImage(image.imageID, actualAreaId)}>
+            <img src={image.choiceUrl} alt={image.name} />
+            </ImageItemView>
+        })}
+            </ImagesList>
+
+            </>}
+            </>
 
         }
         {value === 2 && <Button
@@ -415,7 +581,7 @@ const Designer: FC<{}> = () => {
         {itemsFiltered.map(item => {
             if (value === 0 && item.type === 0)
                 return <ItemTextView key={item.guid} handleItemPropChange={handleItemPropChange} item={item as TextItem} />
-            else if (item.type === 1)
+            else if (value === 1 && item.type === 1)
                 return <ItemImage key={item.guid} handleItemPropChange={handleItemPropChange} item={item as ImageItem} currentTemplateArea={currentTemplateArea!} />
             else return
         })}
