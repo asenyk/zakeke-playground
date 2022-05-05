@@ -581,7 +581,7 @@ const Designer: FC<{}> = () => {
         {itemsFiltered.map(item => {
             if (value === 0 && item.type === 0)
                 return <ItemTextView key={item.guid} handleItemPropChange={handleItemPropChange} item={item as TextItem} />
-            else if (value === 1 && item.type === 1)
+            else if ((value === 1 || value === 2) && item.type === 1)
                 return <ItemImage key={item.guid} handleItemPropChange={handleItemPropChange} item={item as ImageItem} currentTemplateArea={currentTemplateArea!} />
             else return
         })}
