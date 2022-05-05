@@ -15,6 +15,7 @@ import { ReactComponent as BoldIcon } from '../../assets/icons/bold-solid.svg'
 import { ReactComponent as ItalicSolid } from '../../assets/icons/italic-solid.svg'
 import { ReactComponent as CurveIcon } from '../../assets/icons/bezier-curve-solid.svg'
 import { FormControl } from "./FormControl";
+import {TextField} from "@material-ui/core";
 
 export interface EditTextItem {
     guid: string,
@@ -89,19 +90,22 @@ const SinglePaletteItem = styled.div<{ color: string, selected: boolean }>`
     background-color: ${props => props.color};
     border: 1px lightgray solid;
     cursor:pointer;
+    padding: 5px;
+    border-radius: 50%;
     
-    ${props => props.selected && `border: 1px black solid;`}
+    ${props => props.selected && `border: 2px #dc9e5d solid;`}
 
     &:hover {
         opacity: 0.6;
+        border: 2px #dc9e5d solid;
     }
 `;
 
 const TextColorsContainer = styled.div`
     display: grid;
-    grid-template-rows: 20px 20px;
+    grid-template-rows: 30px 30px;
     grid-auto-flow: column;
-    grid-auto-columns: 20px;
+    grid-auto-columns: 30px;
 `;
 
 const OptionContainer = styled(components.Option)`
@@ -120,6 +124,8 @@ const OptionContainer = styled(components.Option)`
 
 const SingleValueContainer = styled(components.SingleValue)`
     img {
+        //background-color: #42545E;
+        padding: 5px;
         max-width: 100%;
         height: 24px;
         object-fit: contain;
@@ -169,18 +175,24 @@ const ItemText: FC<{ item: EditTextItem, handleItemPropChange: PropChangeHandler
     if (item)
         return <ItemTextContainer>
             <FormControl
-                label={item.name || T._("Text", "Composer")}
+                label={item.name || T._("", "Composer")}
                 rightComponent={!hideRemoveButton && <Icon onClick={() => removeItem(item.guid)}><CloseIcon /></Icon>}>
 
                 <TextArea
+                    style={{
+                        borderTop: "none",
+                        borderLeft: "none",
+                        borderRight: "none",
+                    }}
                     defaultValue={item.text}
                     onChange={handleChange}
+                    placeholder={"Write your text here (max 20 characters)"}
                     maxLength={!item.constraints ? null : (item.constraints.maxNrChars || null)}
                     disabled={!canEdit} />
             </FormControl>
 
             <TextToolsContainer>
-                {(!constraints || constraints.canChangeFontFamily) && <FormControl label={T._("Font", "Composer")}>
+                {(!constraints || constraints.canChangeFontFamily) && <FormControl label={T._("", "Composer")}>
                     <Select
                         styles={{
                             container: base => ({
@@ -200,15 +212,27 @@ const ItemText: FC<{ item: EditTextItem, handleItemPropChange: PropChangeHandler
                     />
                 </FormControl>}
                 <TextButtonsContainer>
-                    {(!constraints || constraints.canChangeFontWeight) && <FormControl label={T._("Style", "Composer")}>
+                    {(!constraints || constraints.canChangeFontWeight) && <FormControl label={T._("", "Composer")}>
                         <Columns columns={2}>
                             <Button
+                                style={{
+                                    borderRadius: 20,
+                                    backgroundColor: "transparent",
+                                    color: "white",
+                                    marginLeft: "40px",
+                                    marginRight: "40px",
+                                }}
                                 outline
                                 selected={isBold}
                                 onClick={() => handleItemPropChange(item, 'font-bold', !isBold)}>
                                 <Icon><BoldIcon /></Icon>
                             </Button>
                             <Button
+                                style={{
+                                    borderRadius: 20,
+                                    backgroundColor: "transparent",
+                                    color: "white"
+                                }}
                                 outline
                                 selected={isItalic}
                                 onClick={() => handleItemPropChange(item, 'font-italic', !isItalic)}>
@@ -216,14 +240,14 @@ const ItemText: FC<{ item: EditTextItem, handleItemPropChange: PropChangeHandler
                             </Button>
                         </Columns>
                     </FormControl>}
-                    {(!constraints || constraints.canChangeTextPathMode) && <FormControl label={T._("Curved", "Composer")}>
-                        <Button
-                            outline
-                            selected={hasCurvedText}
-                            onClick={() => handleItemPropChange(item, 'text-path', !hasCurvedText)}>
-                            <Icon><CurveIcon /></Icon>
-                        </Button>
-                    </FormControl>}
+                    {/*{(!constraints || constraints.canChangeTextPathMode) && <FormControl label={T._("Curved", "Composer")}>*/}
+                    {/*    <Button*/}
+                    {/*        outline*/}
+                    {/*        selected={hasCurvedText}*/}
+                    {/*        onClick={() => handleItemPropChange(item, 'text-path', !hasCurvedText)}>*/}
+                    {/*        <Icon><CurveIcon /></Icon>*/}
+                    {/*    </Button>*/}
+                    {/*</FormControl>}*/}
                 </TextButtonsContainer>
             </TextToolsContainer>
 

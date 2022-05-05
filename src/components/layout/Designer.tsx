@@ -11,6 +11,10 @@ import ImagesGalleryDialog from "../dialogs/ImagesGalleryDialog";
 import { ReactComponent as Add } from '../../assets/icons/plus-circle-solid.svg';
 import { useDialogManager } from "../dialogs/Dialogs";
 import useStore from "Store";
+import Paper from "@material-ui/core/Paper";
+import Tab from "@material-ui/core/Tab";
+import Tabs from "@material-ui/core/Tabs";
+import ItemTextView from "../widgets/ItemTextView";
 
 export type PropChangeHandler = (item: EditTextItem | EditImageItem, prop: string, value: string | boolean | File) => void;
 
@@ -227,6 +231,56 @@ const Designer: FC<{}> = () => {
         }
     }
 
+    const handleTextItemPropChange: PropChangeHandler = (item, prop, value) => {
+
+        let weightData: string[] = [];
+
+        let newItem = { ...item } as EditTextItem;
+
+        switch (prop) {
+            case 'text':
+                newItem.text = value as string;
+                break;
+            case 'font-italic':
+                weightData = newItem.fontWeight.split(' ');
+                let isBold = weightData.length > 1 ? weightData[1] === 'bold' : weightData[0] === 'bold';
+                newItem.fontWeight = (value ? "italic" : "normal") + " " + (isBold ? "bold" : "normal");
+                break;
+            case 'font-bold':
+                weightData = newItem.fontWeight.split(' ');
+                let isItalic = weightData.length > 1 ? weightData[0] === 'italic' : false;
+                newItem.fontWeight = (isItalic ? "italic" : "normal") + " " + (value ? "bold" : "normal");
+                break;
+            case 'font-color':
+                newItem.fillColor = value as string;
+                break;
+            case 'font-family':
+                newItem.fontFamily = value as string;
+                break;
+            case 'text-path':
+                newItem.isTextOnPath = value as boolean;
+                break;
+        }
+
+        setItem(newItem);
+    }
+
+    const [value, setValue] = React.useState(0);
+
+    const { fonts, defaultColor } = useZakeke();
+
+    const [item, setItem] = useState<EditTextItem>({
+        guid: '',
+        name: '',
+        text: 'Text',
+        fillColor: defaultColor,
+        fontFamily: fonts[0].name,
+        fontSize: 48,
+        fontWeight: 'normal normal',
+        isTextOnPath: false,
+        constraints: null,
+    })
+
     return <DesignerContainer>
 
         {/* Areas */}
@@ -285,6 +339,86 @@ const Designer: FC<{}> = () => {
             </>}
             <SupportedFormatsList>{T._("Supported file formats:", "Composer") + " " + supportedFileFormats}</SupportedFormatsList>
         </UploadButtons>}
+
+        <Tabs
+          style={{ color: "white", marginBottom: 15 }}
+          value={value}
+          textColor="primary"
+          indicatorColor="primary"
+          onChange={(event, newValue) => {
+              setValue(newValue);
+          }}
+          TabIndicatorProps={{style: {background:'white'}}}
+        >
+            <Tab style={{ color: "white" }} label="Text" />
+            <Tab style={{ color: "white" }} label="Clipart" />
+            <Tab style={{ color: "white" }} label="Image" />
+        </Tabs>
+        {value === 0 && <>
+            <ItemText
+              item={item}
+              handleItemPropChange={handleTextItemPropChange}
+              hideRemoveButton={true} />
+            <Button
+              style={{ marginBottom: 50, width: "100%", backgroundColor: "#f98a1c", color: "white", borderRadius: 20 }}
+              onClick={() => addItemText(item, actualAreaId)}
+            >
+                Add your text
+            </Button>
+        </>}
+        {value === 1 && <></>
+
+        //    <>
+        // {!selectedMacroCategory && <CategoriesList>{macroCategories.map(macroCategory => {
+        //     return <CategoryItem
+        //     key={macroCategory.macroCategoryID!.toString()}
+        //     onClick={() => handleMacroCategoryClick(macroCategory)}>
+        // {macroCategory.name}</CategoryItem>
+        // })}
+        //     </CategoriesList>}
+        //
+        // {selectedMacroCategory && !selectedCategory && <>
+        //     <BackTitle onClick={() => setSelectedMacroCategory(null)}>{T._("Return to macro categories", "Composer")}</BackTitle>
+        //
+        //     <CategoriesList>
+        // {selectedMacroCategory.categories.map(category => {
+        //     return <CategoryItem key={category.categoryID!.toString()} onClick={() => handleCategoryClick(category)}>{category.name}</CategoryItem>
+        // })}
+        //     </CategoriesList>
+        //     </>}
+        //
+        // {selectedMacroCategory && selectedCategory && images && <>
+        //     <BackTitle onClick={() => setSelectedCategory(null)}>{T._("Return to categories", "Composer")}</BackTitle>
+        //
+        //     <ImagesList>
+        // {images.map(image => {
+        //     return <ImageItem key={image.imageID!.toString()} onClick={() => onImageSelected(image)}>
+        //     <img src={image.choiceUrl} alt={image.name} />
+        //     <span>{image.name}</span>
+        //     </ImageItem>
+        // })}
+        //     </ImagesList>
+        //
+        //     </>}
+        //     </>
+
+        }
+        {value === 2 && <Button
+          style={{ marginBottom: 50, width: "100%", backgroundColor: "#f98a1c", color: "white", borderRadius: 20 }}
+          isFullWidth
+          onClick={() => handleUploadImageClick(addItemImage, createImage)}>
+            <span>
+                <span>{itemsFiltered.some(item => item.type === 1) ?
+                  T._("UPLOAD ANOTHER IMAGE", "Composer") : T._("UPLOAD IMAGE", "Composer")} </span>
+            </span>
+        </Button>}
+        {itemsFiltered.map(item => {
+            if (value === 0 && item.type === 0)
+                return <ItemTextView key={item.guid} handleItemPropChange={handleItemPropChange} item={item as TextItem} />
+            else if (item.type === 1)
+                return <ItemImage key={item.guid} handleItemPropChange={handleItemPropChange} item={item as ImageItem} currentTemplateArea={currentTemplateArea!} />
+            else return
+        })}
     </DesignerContainer>
 }
 

@@ -42,6 +42,7 @@ interface ImageItem {
 }
 
 const ImageAndButtonsContainer = styled.div`
+    position: relative;
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-column-gap: 20px;
@@ -51,7 +52,7 @@ const ImageAndButtonsContainer = styled.div`
 `;
 
 const ImagePreview = styled.div`
-    border: 1px #f4f4f4 solid;
+    //border: 1px #f4f4f4 solid;
     padding: 4px;
     height: 130px;
     img{
@@ -93,14 +94,29 @@ const ItemImage: FC<{ item: ImageItem, handleItemPropChange: any, currentTemplat
     const showGalleryButton = (!currentTemplateArea || !currentTemplateArea.disableSellerImages) && canEdit;
 
     return <FormControl
-        label={item.name || T._("Image", "Composer")}
-        rightComponent={<Icon onClick={() => removeItem(item.guid)}><CloseIcon /></Icon>}>
+        label={item.name || T._("", "Composer")}>
         <ImageAndButtonsContainer>
             <ImagePreview><img src={item.url} alt="" /></ImagePreview>
             <ButtonsContainer>
-                {showUploadButton && <Button isFullWidth onClick={handleChangeClick}>{T._("Upload", "Composer")}</Button>}
-                {showGalleryButton && <Button isFullWidth onClick={handleGalleryClick}>{T._("Gallery", "Composer")}</Button>}
+                <Button style=
+                          {{
+                              display: "inline-block",
+                              backgroundColor: "transparent",
+                              color: "white",
+                              border: "1px solid white",
+                              borderRadius: 20,
+                              width: 100,
+                              right: 0,
+                              top: 40,
+                              height: 10,
+                              position: "absolute"
+                          }}
+                        onClick={() => removeItem(item.guid)}
+                >Remove</Button>
+                {/*{showUploadButton && <Button isFullWidth onClick={handleChangeClick}>{T._("Upload", "Composer")}</Button>}*/}
+                {/*{showGalleryButton && <Button isFullWidth onClick={handleGalleryClick}>{T._("Gallery", "Composer")}</Button>}*/}
             </ButtonsContainer>
+
             <input type="file" ref={input => inputHtml = input!} onChange={handleInputChange} />
         </ImageAndButtonsContainer>
     </FormControl>

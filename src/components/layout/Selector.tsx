@@ -1,11 +1,8 @@
-import {ReactComponent as AngleRightSolid} from '../../assets/icons/angle-right-solid.svg';
-import {ReactComponent as AngleLeftSolid} from '../../assets/icons/angle-left-solid.svg';
 
 import OptionItem from '../widgets/Option';
 import Designer from './Designer';
 import star from '../../assets/icons/star.svg';
 
-import {CarouselContainer, Icon} from 'components/Atomic';
 import {useState, useEffect} from 'react';
 import {useZakeke} from 'zakeke-configurator-react';
 import {

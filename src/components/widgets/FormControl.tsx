@@ -15,10 +15,10 @@ const FormControlContainer = styled.div<{ rightComponent?: any }>`
     margin-bottom:10px;
 `;
 
-export const FormControl: FC<{ label: string, rightComponent?: any }> = ({ label, rightComponent, children }) => {
+export const FormControl: FC<{ label?: string, rightComponent?: any }> = ({ label, rightComponent, children }) => {
     return <FormControlContainer>
         <FormControlLabel>
-            <span>{label}</span>
+            {label && (<span>{label}</span>)}
             {rightComponent}
         </FormControlLabel>
         {children}

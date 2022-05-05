@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://asenyk.github.io/zakeke-playground/",
   "dependencies": {
+    "@material-ui/core": "^4.12.4",
     "lodash": "^4.17.21",
     "nuka-carousel": "^5.0.6",
     "polished": "^4.1.3",

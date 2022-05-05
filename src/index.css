@@ -90,7 +90,6 @@ canvas {
   transform: scale(1);
 }
 
-/*input[type="radio"]:checked {*/
-/*  color: red;*/
-/*  border-color: #dc9e5d;*/
-/*}*/
+.Mui-selected {
+  border-bottom-color: white !important;
+}

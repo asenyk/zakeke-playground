@@ -27,22 +27,22 @@ export const Icon = styled.div<{ hoverable?: boolean }>`
 
 export const TextArea = styled.textarea`
   background-color: transparent;
-  padding: 10px 20px;
-  color: #414042;
+  padding: 5px;
+  color: #f4f4f4;
   font-size: 14px;
   border: 1px #f4f4f4 solid;
   width: 100%;
-  min-height: 100px;
+  min-height: 20px;
   font-family: "Montserrat", sans-serif;
   outline: none;
   resize: none;
 
   &:hover {
-    border: 1px black solid;
+    border: 1px #dc9e5d solid;
   }
 
   &:focus {
-    border: 1px black solid;
+    border: 1px #dc9e5d solid;
     outline: none;
   }
 `;
